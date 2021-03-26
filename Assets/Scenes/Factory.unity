@@ -132,11 +132,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 576651658}
+  - component: {fileID: 576651660}
   - component: {fileID: 576651657}
   - component: {fileID: 576651656}
   - component: {fileID: 576651659}
   - component: {fileID: 576651655}
-  - component: {fileID: 576651660}
   m_Layer: 0
   m_Name: Metal Sheet
   m_TagString: Untagged
@@ -249,6 +249,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactFXPrefab: {fileID: 8045481336728782317, guid: 10094d5df8b52e043ae91887002ef1af, type: 3}
+  impactLifetime: 3
+  lightLifetime: 1
   clips:
   - {fileID: 8300000, guid: f3a54ff51a643a94e8647facef8e2ff6, type: 3}
   - {fileID: 8300000, guid: 35cc323df4044a04abd165cc4cd08f24, type: 3}

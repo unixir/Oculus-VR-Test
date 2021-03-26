@@ -5,6 +5,7 @@ using UnityEngine;
 public class Sheet : Pooler
 {
     [SerializeField] GameObject impactFXPrefab;
+    [SerializeField] float impactLifetime = 3f, lightLifetime = 1f;
     [SerializeField] List<AudioClip> clips;
 
     Camera cam;
@@ -38,10 +39,15 @@ public class Sheet : Pooler
 
     IEnumerator ShowImpactVFXAt(Vector3 pos)
     {
-        GameObject impact = InstantiateFromPool(IMPACT_KEY, pos, Quaternion.identity);
-        var ps = impact.GetComponent<ParticleSystem>();
-        ps.Play();
-        yield return new WaitForSeconds(ps.main.startLifetime.constant);
-        ReturnToPool(IMPACT_KEY, impact);
+        if (PoolCount(IMPACT_KEY) >= 0)
+        {
+            GameObject impact = InstantiateFromPool(IMPACT_KEY, pos, Quaternion.identity);
+            var ps = impact.GetComponent<ParticleSystem>();
+            ps.Play();
+            yield return new WaitForSeconds(lightLifetime);
+            impact.GetComponentInChildren<Light>().enabled = false;
+            yield return new WaitForSeconds(impactLifetime - lightLifetime);
+            ReturnToPool(IMPACT_KEY, impact);
+        }
     }
 }
